@@ -1,0 +1,55 @@
+<Page
+    x:Class="SyntheseMVVM.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SyntheseMVVM"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:paging="using:MyToolkit.Paging"
+    xmlns:controls="using:MyToolkit.Controls"
+    mc:Ignorable="d"
+    Background="#FFECECEC">
+
+    <Grid DataContext="{Binding Main, Source={StaticResource Locator}}">
+        <ListView x:Name="lbContact" HorizontalAlignment="Center" Height="499" Margin="0,145,0,0" VerticalAlignment="Top" Width="432" ItemsSource="{Binding Contact, Mode=TwoWay}" SelectedItem="{Binding ContactSelectionne, Mode=TwoWay}">
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid Padding="12" Background="{ThemeResource ButtonBorderThemeBrush}" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="432">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="182"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Prénom" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Nom" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="0" Text="Téléphone" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Grid.Column="3" Grid.Row="0" Text="Mail" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="12" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="432">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="182"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Prenom, Mode=TwoWay}" FontSize="12"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Nom, Mode=TwoWay}" FontSize="12"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Numtel, Mode=TwoWay}" FontSize="12"/>
+                        <TextBlock Grid.Column="3" Text="{Binding Mail, Mode=TwoWay}" FontSize="12"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TextBlock HorizontalAlignment="Center" Margin="0,19,0,0" Text="Répertoire téléphonique" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Width="386"/>
+        <TextBox x:Name="tbRecherche" HorizontalAlignment="Center" Margin="0,90,0,0" Text="{Binding Recherche, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="386" PlaceholderText="Recherche par Nom"/>
+        <Image x:Name="btAdd" HorizontalAlignment="Center" Height="75" Margin="-301,670,0,0" VerticalAlignment="Top" Width="75" Source="/Assets/add.png"/>
+        <Image x:Name="btDelete" HorizontalAlignment="Center" Height="75" Margin="301,670,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.498,0.524" Source="/Assets/delete.png" Width="75"/>
+        <Button Content="" HorizontalAlignment="Center" Margin="-301,670,0,0" VerticalAlignment="Top" Height="75" Width="75" FocusVisualPrimaryBrush="{x:Null}" Foreground="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" BorderBrush="{x:Null}" Background="#02C1C1C1" Command="{Binding AjouterCommand}"/>
+        <Button Content="" HorizontalAlignment="Center" Margin="301,670,0,0" VerticalAlignment="Top" Height="75" Width="75" FocusVisualPrimaryBrush="{x:Null}" Foreground="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" BorderBrush="{x:Null}" Background="#02C1C1C1" Command="{Binding SupprimerCommand}"/>
+    </Grid>
+</Page>
